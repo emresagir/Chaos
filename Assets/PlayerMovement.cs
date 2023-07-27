@@ -6,33 +6,43 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    bool isJumping;
-    float distToGround;
+    private BoxCollider2D coll;
+    //bool isJumping;
+    private bool isAbleToJump;
+    private int jumpCount;
+
+
+    [SerializeField] private float distToGround;
+    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Wassaa");
         rb = GetComponent<Rigidbody2D>();
-        isJumping = false;
+        coll = GetComponent<BoxCollider2D>();
+        //isJumping = false;
+        isAbleToJump = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("w") && !isJumping) //Jump
+        isGrounded();
+        if (Input.GetKeyDown("w") && isAbleToJump) //Jump
         {
             jump();
 
         }
         else if (Input.GetKey("d"))
         {
-            rb.velocity = new Vector2(4, rb.velocity.y);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         else if (Input.GetKey("a"))
         {
-            rb.velocity = new Vector2(-4, rb.velocity.y);
+            rb.velocity = new Vector2(-1*speed,rb.velocity.y);
         }
     }
 
@@ -40,14 +50,30 @@ public class PlayerMovement : MonoBehaviour
     private void jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 12);
-        isJumping = true;
+        jumpCount++;
+        if (jumpCount > 0)
+        {
+            isAbleToJump = false;
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision detected");
         if (collision.gameObject.tag == "Ground")
             isJumping = false;
         Debug.Log("ground is being touched");
     }
+    */
+
+    private void isGrounded()
+    {
+        bool bc = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, distToGround, jumpableGround);
+        if (bc == true)
+        {
+            jumpCount = 0;
+            isAbleToJump = true;
+        }
+    }
+
 }
