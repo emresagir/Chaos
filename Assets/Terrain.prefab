@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898598345292396856}
   - component: {fileID: 37851839625903986}
+  - component: {fileID: -5298564676584362379}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -45,6 +46,23 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &-5298564676584362379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3005863412371878524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6911999a523d5874dbac1237a30b4bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interpVelocity: 0
+  minDistance: 0
+  followDistance: 0
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7060518095668198194
 GameObject:
   m_ObjectHideFlags: 0
