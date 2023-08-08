@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator anima;
@@ -12,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     //bool isJumping;
     private bool isAbleToJump;
     private int jumpCount;
-
+    private GameObject flamator;
+    private SpriteRenderer flamatorRend;
 
 
     [SerializeField] private float distToGround;
@@ -29,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
         //isJumping = false;
         isAbleToJump = false;
+
+        //flamator is searching, thus at the second jump there will be a flame on the bottom of the char.
+        flamator = GameObject.Find("Flamator");
+        flamatorRend = flamator.GetComponent<SpriteRenderer>();
+
+        
 
     }
 
@@ -55,11 +63,19 @@ public class PlayerMovement : MonoBehaviour
             anima.SetBool("isRunning", true);
             spriteRend.flipX = true;
         }
+        else if (Input.GetKey("j"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 12);
+            flamatorRend.enabled = true;
+
+
+        }
 
         else
         {
             rb.velocity = new Vector2 (0,rb.velocity.y); // this part requires for sliding to stop. If sliding is ok delete this else.
             anima.SetBool("isRunning", false); // runs idle animation
+            flamatorRend.enabled = false;
         }
         //////////////////////KEY CHECK END///////////////////////
 
