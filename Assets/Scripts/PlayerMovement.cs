@@ -112,12 +112,18 @@ public class PlayerMovement : MonoBehaviour
         if (bc == true)
         {
             anima.SetBool("isJumping", false);
+            anima.SetBool("isFalling", false);
             jumpCount = 0;
             isAbleToJump = true;
         }
         else
         {
+            if(rb.velocity.y < -.1f)
+            {
+                anima.SetBool("isFalling", true);
+            }
             anima.SetBool("isJumping", true);
+
         }
     }
 
