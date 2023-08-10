@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float distToGround;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float speed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         //flamator is searching, thus at the second jump there will be a flame on the bottom of the char.
         flamator = GameObject.Find("Flamator");
+        
         flamatorRend = flamator.GetComponent<SpriteRenderer>();
 
         
@@ -96,15 +98,16 @@ public class PlayerMovement : MonoBehaviour
     //isGrounded function has a boxcast function in it and it runs with an offset, 
     //when we press the jump key, animation starts but at the same time it enters the 
     //isGrounded function because of the offset. Thus this function used for animation control.
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
                                                             
     {
         Debug.Log("Collision detected");
-        if (collision.gameObject.tag == "Ground")
-            anima.SetBool("isJumping", false);
-        Debug.Log("ground is being touched");
+        if (collision.gameObject.tag == "Cherry")
+            anima.SetBool("CherryCollect", true);
+            //needs to configure for multiple cherry's and theirs Destroy()
+        
     }
-    */
+    
 
     private void isGrounded() //Ground check with Boxcast function, it returns when casted box collides with wanted layer.
     {
@@ -126,5 +129,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+
 
 }
