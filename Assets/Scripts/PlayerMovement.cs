@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         
 
+
     }
 
     // Update is called once per frame
@@ -98,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     //isGrounded function has a boxcast function in it and it runs with an offset, 
     //when we press the jump key, animation starts but at the same time it enters the 
     //isGrounded function because of the offset. Thus this function used for animation control.
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
                                                             
     {
@@ -107,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             //needs to configure for multiple cherry's and theirs Destroy()
         
     }
-    
+    */
 
     private void isGrounded() //Ground check with Boxcast function, it returns when casted box collides with wanted layer.
     {
