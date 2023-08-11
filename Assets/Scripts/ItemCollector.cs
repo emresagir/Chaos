@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class ItemCollector : MonoBehaviour
 {
-    private Animator anima;
+    private int cherries = 0;
 
-    void Start()
-    {
-        anima = GetComponent<Animator>();
-        anima.SetBool("CherryCollected", false);
-    }
-    
-
+    [SerializeField] private Text cherriesText;
 
     private void OnTriggerEnter2D(Collider2D collision)
 
@@ -20,9 +16,9 @@ public class ItemCollector : MonoBehaviour
         Debug.Log("Collision detected");
         if (collision.gameObject.CompareTag("Cherry"))
         {
-            anima.SetBool("CherryCollected", true);
-            //new WaitForSeconds(0.6f);
+            cherries++;
             Destroy(collision.gameObject);
+            cherriesText.text = "Cherries: " + cherries;
 
         }
             
